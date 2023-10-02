@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">ShowStoreNearMe</string>
+    <string name="google_api_key">AIzaSyAnhTf79xLDcS0zj_cl_rjAVbx-cIBfwa8</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

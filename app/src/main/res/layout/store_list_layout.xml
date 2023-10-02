@@ -2,29 +2,20 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/cardview_store"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="10dp"
     app:cardCornerRadius="10dp"
     app:cardElevation="5dp">
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_margin="10dp">
-
-        <ImageView
-            android:id="@+id/image_store"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_centerVertical="true"
-            android:src="@drawable/blank_24"/>
         <TextView
             android:id="@+id/text_view_store_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Store Name"
-            android:layout_toEndOf="@+id/image_store"
             android:textSize="18sp"
             android:layout_margin="5dp"
             android:textStyle="bold"/>
@@ -33,12 +24,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Store Name"
-            android:layout_toEndOf="@+id/image_store"
-            android:layout_below="@+id/text_view_store_name"
             android:textSize="15sp"
             android:layout_marginStart="5dp"
             android:layout_marginBottom="5dp"
             android:textStyle="normal"/>
-    </RelativeLayout>
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>

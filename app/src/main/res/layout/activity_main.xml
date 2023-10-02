@@ -5,160 +5,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MainActivity"
-    android:background="@color/white">
+    tools:context=".MainActivity">
 
-    <RelativeLayout
-        android:id="@+id/relativelayout_holder"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp">
-        <RelativeLayout
-            android:id="@+id/relativelayout_address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toStartOf="@+id/linearLayour_user">
-            <ImageView
-                android:id="@+id/image_dummy2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_baseline_location_on_24"/>
-            <TextView
-                android:id="@+id/tv_selectedAddressCity"
-                android:layout_toEndOf="@+id/image_dummy2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:textStyle="bold"
-                android:gravity="center_vertical"/>
-            <TextView
-                android:id="@+id/tv_selectedAddress"
-                android:layout_toEndOf="@+id/image_dummy2"
-                android:layout_below="@+id/tv_selectedAddressCity"
-                android:layout_marginStart="5dp"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"/>
-        </RelativeLayout>
-        <LinearLayout
-            android:id="@+id/linearLayour_user"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginStart="3dp"
-            android:layout_marginEnd="5dp"
-            android:layout_alignParentEnd="true">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_baseline_person_24"/>
-            <TextView
-                android:id="@+id/textviewuserName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativelayout_search"
-        android:layout_below="@+id/relativelayout_holder"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="5dp"
-        android:background="@drawable/searchbar_bg">
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchView_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:queryHint="Search Stores"
-            android:focusableInTouchMode="true"
-            android:clickable="true"/>
-        <ImageView
-            android:id="@+id/img_clear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_clear_24"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:padding="16dp"
-            android:visibility="gone"/>
-        <ProgressBar
-            android:id="@+id/progrssbar"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:indeterminate="true"
-            android:layout_margin="16dp"
-            android:layout_alignParentEnd="true"
-            android:indeterminateTint="#E00909"
-            android:visibility="gone"
-            android:layout_centerVertical="true"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativelayout_slider"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:orientation="vertical"
-        android:layout_below="@+id/relativelayout_search">
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/sliderImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp"/>
-
+        android:theme="@style/AppTheme.AppBarOverlay">
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/sliderImagetablayout"
+            android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            app:elevation="0dp"
-            android:layout_alignParentBottom="true"
-            app:tabBackground="@drawable/tab_selector"
             app:tabGravity="center"
-            app:tabIndicatorHeight="0dp" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativelayout_storelist"
-        android:layout_below="@+id/relativelayout_slider"
-        android:layout_above="@+id/appmain_navi"
+            app:tabMode="fixed"
+            app:tabIndicatorColor="@color/white"
+            app:tabSelectedTextColor="@color/black"/>
+    </com.google.android.material.appbar.AppBarLayout>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_below="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_StoreList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:scrollbars="vertical"/>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_open_map"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="20dp"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/ic_baseline_store_24"
-            android:contentDescription="openMap" />
-    </RelativeLayout>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/appmain_navi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:backgroundTint="@color/white"
-        android:background="?android:attr/windowBackground"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/main_navi"
-        android:layout_alignParentBottom="true"/>
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
 </RelativeLayout>
