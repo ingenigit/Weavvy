@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Available quantities for"
+            android:fontFamily="sans-serif"
+            android:layout_marginTop="8dp"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/tvtop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Available Quantities"
+            android:textColor="#BF000000"
+            android:gravity="center"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="10dp"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:layout_marginTop="5dp"
+            android:background="#AA0808"
+            android:textColor="#fff"
+            android:id="@+id/selCancel" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
