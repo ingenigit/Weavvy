@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Weavvy</string>
     <string name="google_api_key">AIzaSyAnhTf79xLDcS0zj_cl_rjAVbx-cIBfwa8</string>
+    <string name="sym_tick">\u2713</string>
+    <string name="order_completed">Order Completed</string>
+    <string name="order_cancelled">Order Cancelled</string>
+    <string name="order_declined">Order Declined</string>
+    <string name="pay_method_UPI">UPI</string>
+    <string name="pay_method_wallet">Wallet</string>
+    <string name="pay_method_netbank">NetBanking</string>
 </resources>

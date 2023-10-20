@@ -1,7 +1,12 @@
 package com.or2go.weavvy;
 
+import static com.or2go.core.Or2goConstValues.OR2GO_COMM_APPINFO;
+import static com.or2go.core.Or2goConstValues.OR2GO_COMM_LOGIN;
+import static com.or2go.core.Or2goConstValues.OR2GO_COMM_SYNC_API;
 import static com.or2go.core.Or2goConstValues.OR2GO_INIT_COMPLETE;
+import static com.or2go.core.Or2goConstValues.OR2GO_INIT_LOGGED_IN;
 import static com.or2go.core.Or2goConstValues.OR2GO_INIT_NONE;
+import static com.or2go.core.Or2goConstValues.OR2GO_MAX_LOGIN_RETRY_COUNT;
 
 import android.app.Application;
 import android.net.ConnectivityManager;
@@ -31,7 +36,9 @@ import com.or2go.weavvy.manager.ProductManager;
 import com.or2go.weavvy.manager.SPManager;
 import com.or2go.weavvy.manager.SearchManager;
 import com.or2go.weavvy.manager.StoreManager;
+import com.or2go.weavvy.server.AppInfoCallback;
 import com.or2go.weavvy.server.CompleteStoreCallback;
+import com.or2go.weavvy.server.Or2goLoginCallback;
 import com.or2go.weavvy.service.OrderUpdateWorker;
 
 import java.text.SimpleDateFormat;
@@ -78,6 +85,18 @@ public class AppEnv extends Application {
         handler.setApplicationInfo(this);
 
         Thread.setDefaultUncaughtExceptionHandler(new Or2GoExceptionHandler(this));
+    }
+
+    public void postLoginProcess(){
+        Log.i("AppEnv", "Post Login Process Start");
+        gEnvInitStatus = OR2GO_INIT_LOGGED_IN;
+        gMsgManager = new GposMQManager(this);
+        gOrderMgr.getActiveOrders();
+        gDeliveryMgr.getDeliveryModel();
+        gDiscountMgr.getGlobalDiscountData();
+        gOrderHistoryManager = new OrderHistoryManager(this);
+        gEnvInitStatus = OR2GO_INIT_COMPLETE;
+        Log.i("AppEnv", "Post Login Process Complete");
     }
 
     public int startEnv(){
@@ -130,16 +149,28 @@ public class AppEnv extends Application {
             }
         }
         or2goGetStoreList();
+        or2goGetAppInfo();
         //for registration dialog
-//        if (isRegistered()) {
-//            if (gAppSettings.getUserType().equals(""))
-//                or2goLogin();
-//            else{
-//                setLoginState(true);
-//                postLoginProcess();
-//            }
-//        }
+        if (isRegistered()) {
+            if (gAppSettings.getUserType().equals(""))
+                or2goLogin();
+            else{
+                setLoginState(true);
+                postLoginProcess();
+            }
+        }
         return true;
+    }
+
+    private void or2goGetAppInfo() {
+        Message msg = new Message();
+        msg.what = OR2GO_COMM_APPINFO;
+        msg.arg1 = OR2GO_COMM_SYNC_API;
+        AppInfoCallback appinfocb = new AppInfoCallback(this);
+        Bundle b = new Bundle();
+        b.putParcelable("callback", appinfocb );
+        msg.setData(b);
+        getCommMgr().postMessage(msg);
     }
 
     private void or2goGetStoreList() {
@@ -152,6 +183,24 @@ public class AppEnv extends Application {
         b.putParcelable("callback", completeStoreCallback );
         msg.setData(b);
         gCommMgr.postMessage(msg);
+    }
+
+    public void or2goLogin() {
+        if (gLoginAttemptCount >= OR2GO_MAX_LOGIN_RETRY_COUNT) {
+            System.out.println("Login retry limit...");
+            return;
+        }
+        Message msg = new Message();
+        msg.what = OR2GO_COMM_LOGIN;	//fixed value for sending sales transaction to server
+        msg.arg1 = OR2GO_COMM_SYNC_API;
+        Or2goLoginCallback logincb = new Or2goLoginCallback(this);//Callback(mContext);
+        Bundle b = new Bundle();
+        b.putParcelable("callback", logincb );
+        msg.setData(b);
+        gCommMgr.postMessage(msg);
+
+        gLoginAttemptCount++;
+
     }
 
     public GposLogger getGposLogger() {
@@ -204,6 +253,14 @@ public class AppEnv extends Application {
             return true;
     }
 
+    public void setSPClosedNoticeDone(boolean sts) {
+        SPCloseNoticeDone = sts;
+    }
+
+    public boolean getSPClosedNoticeDone() {
+        return SPCloseNoticeDone;
+    }
+
     public void startBackgroundMessageCheck() {
         System.out.println("AppEnv : starting backgroundOrderCheck");
         Constraints constraints = new Constraints.Builder()
@@ -253,6 +310,13 @@ public class AppEnv extends Application {
             //Log.i("DataSyncTimerThread", "No Internet connection");
             return false;
         }
+    }
+
+    public Integer getCartCaount() {
+        if (gCartMgr == null)
+            return 0;
+        else
+            return gCartMgr.getCartSize();
     }
 
     public String getCurTime() {

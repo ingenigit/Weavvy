@@ -6,6 +6,9 @@ public class StoreList implements Serializable {
     public String stringID, stringName, stringType, geolocation, vContact;
     public boolean isSelected;
 
+    public StoreList() {
+
+    }
     public StoreList(String stringID, String stringName, String stringType, String contact, String geoLocation, boolean isSelected) {
         this.stringID = stringID;
         this.stringName = stringName;

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/profilenavi_home"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/profilenavi_order_history"
+        android:icon="@drawable/ic_baseline_receipt_long_24"
+        android:title="Order History" />
+
+    <item
+        android:id="@+id/profilenavi_newaddr"
+        android:icon="@drawable/ic_baseline_add_location_24"
+        android:title="Add Address" />
+
+</menu>

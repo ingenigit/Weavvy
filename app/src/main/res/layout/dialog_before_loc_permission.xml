@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/white">
+    <ImageView
+        android:id="@+id/fixoinMapIcon"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_margin="5dp"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:id="@+id/tv_dialog_title"
+        android:layout_below="@+id/fixoinMapIcon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pick your address"
+        android:layout_margin="5dp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+    <TextView
+        android:id="@+id/tv_desc_data_access"
+        android:layout_below="@+id/tv_dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="To send exact location to delivery boy, \n allow Fixoin App to use your location."
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+    <TextView
+        android:id="@+id/tv_explanation"
+        android:layout_below="@+id/tv_desc_data_access"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Fixoin App collects your provided location data only, to help the delivery boy to find your exact location for delivery."
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:layout_centerInParent="true"
+        android:src="@drawable/best_location"/>
+    <LinearLayout
+        android:id="@+id/ll_button_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:id="@+id/buttonDeny"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:padding="15dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:text="Deny"/>
+        <TextView
+            android:id="@+id/buttonAccept"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:padding="15dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:text="Accept"/>
+    </LinearLayout>
+
+</RelativeLayout>

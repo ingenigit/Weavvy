@@ -88,7 +88,7 @@ public class CompleteStoreCallback extends CommApiCallback implements Parcelable
                                 vgeo, vcont, payopt, orderopt, invctl);
                         nstore.setFavItems(favlist);
                         gAppEnv.getStoreManager().updateStoreInfo(sid, nstore);
-
+                        gAppEnv.getStoreManager().addStoreData(sid, vname, vtype, vcont, vgeo);
                         StoreList storeList = new StoreList(sid, vname, vtype, vcont, vgeo, false);
                         gAppEnv.getStoreManager().addStoreInfo(storeList);
                     }

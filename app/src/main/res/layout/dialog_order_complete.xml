@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/otpdiagll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+	android:padding="10dp"
+	android:background="@color/white"
+    android:orientation="vertical">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical">
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+			<ImageView
+				android:id="@+id/iv_product_image"
+				android:layout_width="90dp"
+				android:layout_height="90dp"
+				android:scaleType="fitCenter"
+				android:visibility="gone"
+				android:contentDescription="Image" />
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:orientation="vertical">
+				<TextView
+					android:id="@+id/tv_product_name"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:gravity="start"
+					android:textStyle="bold"
+					android:textSize="18sp" />
+				<TextView
+					android:id="@+id/tv_product_desc"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:gravity="start"
+					android:maxLines="1"
+					android:visibility="gone"
+					android:ellipsize="end"
+					android:textSize="12sp"/>
+				<RatingBar
+					android:id="@+id/orderCompleteRatingBar"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:rating="0.0"
+					android:isIndicator="false"
+					android:numStars="5"
+					style="?android:attr/ratingBarStyleIndicator"
+					android:stepSize="0.5" />
+			</LinearLayout>
+		</LinearLayout>
+		<EditText
+			android:id="@+id/et_feedback"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="Feedback"/>
+	</LinearLayout>
+</LinearLayout>

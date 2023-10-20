@@ -89,11 +89,11 @@ public class GposCommManager extends Thread {
                 Bundle b;
                 CommApiCallback apicb;
                 switch(nMsg) {
-//                    case OR2GO_COMM_APPINFO:
-//                        b = msg.getData();
-//                        apicb = b.getParcelable("callback");
-//                        or2goAppInfoPub(apicb);
-//                        break;
+                    case OR2GO_COMM_APPINFO:
+                        b = msg.getData();
+                        apicb = b.getParcelable("callback");
+                        or2goAppInfoPub(apicb);
+                        break;
                     case 358:
                         b = msg.getData();
                         apicb = b.getParcelable("callback");
@@ -369,13 +369,13 @@ public class GposCommManager extends Thread {
             return false;
     }
 
-//    public void or2goAppInfoPub(final CommApiCallback callback) {
-//        final String URL = BuildConfig.OR2GO_SERVER+"api/customerappinfopub/";
-//        HashMap<String, String> params = new HashMap<String, String>();
-//        params.put("accesskey", "TKO135nrt246");
-//        params.put("vendorid", BuildConfig.OR2GO_VENDORID);
-//        apiCaller.PostArrayRequest(URL, params, callback);
-//    }
+    public void or2goAppInfoPub(final CommApiCallback callback) {
+        final String URL = BuildConfig.OR2GO_SERVER+"api/customerappinfopub/";
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("accesskey", "TKO135nrt246");
+        params.put("vendorid", BuildConfig.OR2GO_VENDORID);
+        apiCaller.PostArrayRequest(URL, params, callback);
+    }
 
     private void or2goAllStore(CommApiCallback apicb) {
         final String URL = "https://or2go.in/api/allstorelistpub/";

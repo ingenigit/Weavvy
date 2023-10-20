@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+	<TextView
+		android:id="@+id/addrname"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:gravity="start"
+		android:layout_marginTop="5dp"
+		android:layout_marginBottom="5dp"
+		android:textSize="16sp"
+		android:textColor="#000" />
+
+	<LinearLayout
+		android:layout_height="match_parent"
+		android:layout_width="match_parent"
+		android:weightSum="1"
+		android:orientation="horizontal"
+		android:layout_margin="2dp">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="0.75"
+			android:layout_gravity="center"
+			android:gravity="end"
+			android:text="Address"
+			android:layout_marginRight="5dp"
+			android:layout_marginLeft="5dp" />
+
+		<TextView
+			android:id="@+id/address"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="0.25"
+			android:layout_gravity="start"
+			android:gravity="start"
+			android:layout_marginRight="5dp"
+			android:layout_marginLeft="5dp" />
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_height="match_parent"
+		android:layout_width="match_parent"
+		android:orientation="horizontal"
+		android:weightSum="1"
+		android:layout_margin="2dp">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="0.75"
+			android:layout_gravity="center"
+			android:gravity="end"
+			android:text="Landmark"
+			android:layout_marginRight="5dp"
+			android:layout_marginLeft="5dp" />
+
+		<TextView
+			android:id="@+id/landmark"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:gravity="start"
+			android:layout_weight="0.25"
+			android:layout_marginRight="5dp"
+			android:layout_marginLeft="5dp"
+			/>
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_height="match_parent"
+		android:layout_width="match_parent"
+		android:orientation="horizontal"
+		android:weightSum="1"
+		android:layout_margin="2dp">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="0.75"
+			android:layout_gravity="center"
+			android:gravity="end"
+			android:text="Locality"
+			android:layout_marginRight="5dp"
+			android:layout_marginLeft="5dp" />
+
+		<TextView
+			android:id="@+id/locality"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:gravity="start"
+			android:layout_weight="0.25"
+			android:layout_marginRight="5dp"
+			android:layout_marginLeft="5dp"
+			/>
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_height="match_parent"
+		android:layout_width="match_parent"
+		android:weightSum="1"
+		android:layout_margin="2dp">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="0.75"
+			android:layout_gravity="center"
+			android:gravity="end"
+			android:text="Place"
+			android:layout_marginRight="5dp"
+			android:layout_marginLeft="5dp" />
+
+		<TextView
+			android:id="@+id/place"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="0.25"
+			android:layout_gravity="center"
+			android:gravity="start"
+			android:layout_marginRight="5dp"
+			android:layout_marginLeft="5dp" />
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_height="match_parent"
+		android:layout_width="match_parent"
+		android:weightSum="1"
+		android:layout_margin="2dp">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="0.75"
+			android:layout_gravity="center"
+			android:gravity="end"
+			android:text="PIN"
+			android:layout_marginRight="5dp"
+			android:layout_marginLeft="5dp" />
+
+		<TextView
+			android:id="@+id/pin"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="0.25"
+			android:layout_gravity="center"
+			android:gravity="start"
+			android:layout_marginRight="5dp"
+			android:layout_marginLeft="5dp" />
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_height="match_parent"
+		android:layout_width="match_parent"
+		android:weightSum="1"
+		android:layout_margin="2dp">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="0.75"
+			android:layout_gravity="center"
+			android:gravity="end"
+			android:text="Contact"
+			android:layout_marginRight="5dp"
+			android:layout_marginLeft="5dp" />
+
+		<TextView
+			android:id="@+id/contact"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="0.25"
+			android:layout_gravity="center"
+			android:gravity="start"
+			android:layout_marginRight="5dp"
+			android:layout_marginLeft="5dp" />
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:orientation="horizontal">
+
+		<Button
+			android:id="@+id/btAddrEdit"
+			style="?android:attr/borderlessButtonStyle"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:layout_margin="5dp"
+			android:gravity="center"
+			android:text="EDIT"
+			android:textColor="#0A0" />
+
+		<Button
+			android:id="@+id/btAddrDelete"
+			style="?android:attr/borderlessButtonStyle"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:layout_marginTop="5dp"
+			android:layout_marginBottom="5dp"
+			android:layout_marginEnd="5dp"
+			android:text="DELETE"
+			android:textColor="#0A0" />
+	</LinearLayout>
+</LinearLayout>

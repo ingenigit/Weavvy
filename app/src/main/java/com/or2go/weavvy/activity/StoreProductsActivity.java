@@ -101,8 +101,7 @@ public class StoreProductsActivity extends AppCompatActivity implements MultiPac
     TextView textViewCatName;
     RecyclerView recyclerViewSub;
     SalesSubCatListAdapter subCatListAdapter;
-
-//    SkeletonScreen skeletonScreen;
+    SkeletonScreen skeletonScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -363,15 +362,15 @@ public class StoreProductsActivity extends AppCompatActivity implements MultiPac
 
         if (mStoreInfo.isDownloadRequired()) {
             gAppEnv.getDataSyncManager().startDataDownload(mStoreInfo); // requestVendorDataSync(mStoreInfo.vId);
-//            skeletonScreen = Skeleton.bind(mRecyclerView)
-//                    .adapter(mAdapter)
-//                    .shimmer(true)
-//                    .angle(30)
-//                    .frozen(false)
-//                    .duration(500)
-//                    .count(5)
-//                    .load(R.layout.skeleton_sales_select_item)
-//                    .show(); //default count is 10
+            skeletonScreen = Skeleton.bind(mRecyclerView)
+                    .adapter(mAdapter)
+                    .count(6)
+                    .load(R.layout.skeleton_sales_select_item)
+                    .duration(500)
+                    .shimmer(true)
+                    .angle(30)
+                    .frozen(false)
+                    .show();
             monitorCommProgress();
         }
     }
@@ -393,30 +392,19 @@ public class StoreProductsActivity extends AppCompatActivity implements MultiPac
                         mProductMgr.getAllItems(salesItems);
                     mAdapter.notifyDataSetChanged();
                     productTypes = (ArrayList<String>) mProductMgr.getProductTypes();//
-                    /*listMenu = (ListView) findViewById(R.id.activity_main_menu_listview);
-                    listMenu.setAdapter(new ArrayAdapter<>(mContext, android.R.layout.simple_list_item_1, productTypes));
-                    listMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            onMenuItemClick(parent, view, position, id);
-                        }
-
-                    });*/
-                    //btMenu.setEnabled(true);
-                    //btClearSel.setEnabled(true);
                     mCategoryListAdapter.notifyDataSetChanged();
-//                    skeletonScreen.hide();
+                    skeletonScreen.hide();
                     mProgressHandler = null;
                 }
                 else if(gAppEnv.getDataSyncManager().isDownloadError(mStoreInfo)){
                     mProgressHandler.removeCallbacks(null);
                     mCategoryListAdapter.notifyDataSetChanged();
-//                    skeletonScreen.hide();
+                    skeletonScreen.hide();
                     mProgressHandler = null;
                     Toast.makeText(mContext,"download error", Toast.LENGTH_SHORT).show();
                 }
                 else if (salesItems.size() == 0){
-//                    skeletonScreen.hide();
+                    skeletonScreen.hide();
                     nodataLayout.setVisibility(View.VISIBLE);
                     mProgressHandler.removeCallbacks(null);
                     mProgressHandler = null;
@@ -470,7 +458,7 @@ public class StoreProductsActivity extends AppCompatActivity implements MultiPac
                         Toast.makeText(mContext, "Cart is empty! ", Toast.LENGTH_SHORT).show();
                         return false;
                     }
-                    startActivity(new Intent(StoreProductsActivity.this, CartActivity.class));
+                    startActivity(new Intent(StoreProductsActivity.this, OrderCartActivity.class));
                     return true;
             }
             return false;
@@ -608,14 +596,23 @@ public class StoreProductsActivity extends AppCompatActivity implements MultiPac
     @Override
     protected void onStart() {
         super.onStart();
-        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, new IntentFilter("Order_CartManager_Update"));
-        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, new IntentFilter("Order_Cart_Update"));
+        registerStatusUpdateReceiver();
     }
 
+
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterStatusUpdateReceiver();
+    }
+
+    private void unregisterStatusUpdateReceiver() {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mReceiver);
+    }
+
+    private void registerStatusUpdateReceiver() {
+        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, new IntentFilter("Order_CartManager_Update"));
+        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, new IntentFilter("Order_Cart_Update"));
     }
 
     @Override

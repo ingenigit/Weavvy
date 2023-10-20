@@ -2,7 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:name=".AppEnv"
@@ -14,8 +18,98 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Weavvy"
-        android:usesCleartextTraffic="true"
-        tools:targetApi="31">
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".activity.OrderTrackActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Weavvy.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activity.FeedbackActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activity.TermsViewActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Weavvy.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activity.EditAddressActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activity.LocationPickerActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Weavvy.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activity.OrderHistoryActivity"
+            android:exported="false"
+            android:label="Order History"
+            android:theme="@style/Theme.Weavvy.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activity.NewAddressActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activity.EditProfileActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activity.OrderListActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Weavvy.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activity.SearchActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activity.UserProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Weavvy.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activity.OrderCartActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".activity.AddressActivity"
             android:exported="false">
@@ -25,42 +119,40 @@
         </activity>
         <activity
             android:name=".activity.UserRegisterActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".activity.CartActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/Theme.Weavvy.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".activity.SearchProductActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/Theme.Weavvy.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".activity.ItemDetailsActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/Theme.Weavvy.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".activity.StoreProductsActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/Theme.Weavvy.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".activity.OrderHistoryDetailsActivity"
-            android:exported="false">
+            android:exported="false"
+            android:label="Order Information">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -74,18 +166,24 @@
         </activity>
         <activity
             android:name=".activity.ExceptionHandlerActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/Theme.Weavvy.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".activity.MapStoreList"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/Theme.Weavvy.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_test_iSvI8GbwkgbGf6"  />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -93,7 +191,8 @@
 
         <activity
             android:name=".activity.SplashScreen"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Weavvy.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -106,7 +205,8 @@
         </activity>
         <activity
             android:name=".activity.MainActivity"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/Theme.Weavvy.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

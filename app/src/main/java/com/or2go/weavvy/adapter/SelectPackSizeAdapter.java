@@ -63,15 +63,6 @@ public class SelectPackSizeAdapter extends RecyclerView.Adapter<SelectPackSizeAd
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        //ProductPriceInfo packInfo = priceInfos.get(position);
-
-        /*if (packInfo.mPriceId == mSelectedItem){
-            holder.relativeLayout.setBackgroundResource(R.drawable.highlight_select_bg);
-        }else{
-            holder.relativeLayout.setBackgroundResource(R.drawable.pack_size_bg);
-        }*/
-//        holder.radioButton.setChecked(position == mSelectedItem);
-
         ProductSKU skuinfo = productSKUS.get(position);
         OrderCartManager mCartMgr = appEnv.getCartManager();
         Float fQnty= mOrderItemList.mapQuantity.get(skuinfo.mSKUId);
@@ -137,18 +128,6 @@ public class SelectPackSizeAdapter extends RecyclerView.Adapter<SelectPackSizeAd
             holder.proOutStock.setVisibility(View.GONE);
             holder.showStock.setVisibility(View.GONE);
         }
-
-
-        /*int skuid = packInfo.mSKUId;
-        ProductSKU SKUInfo = null;
-        if (skuid!=0) {
-            for (int j = 0; j < productSKUS.size(); j++) {
-                if (productSKUS.get(j).mSKUId == skuid) {
-                    SKUInfo = productSKUS.get(j);
-                    break;
-                }
-            }
-        }*/
 
         holder.textViewSP.setText(currency.getSymbol() +skuinfo.mPrice.toString());
         if (skuinfo !=null)
@@ -228,21 +207,21 @@ public class SelectPackSizeAdapter extends RecyclerView.Adapter<SelectPackSizeAd
         TextView textViewColor, textViewSize;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-//            relativeLayout = (RelativeLayout) itemView.findViewById(R.id.selectedOne);
-//            showStock = (TextView) itemView.findViewById(R.id.showStockAvailable);
-//            proOutStock = (TextView) itemView.findViewById(R.id.proOutOfStock);
-//            linearLayout = (LinearLayout) itemView.findViewById(R.id.showQtyWant);
-//            textViewColor = (TextView) itemView.findViewById(R.id.textViewColor);
-//            textViewSize = (TextView) itemView.findViewById(R.id.tv_ProSize);
-//            textViewMRP = (TextView) itemView.findViewById(R.id.tv_mrp);
-//            textViewSP = (TextView) itemView.findViewById(R.id.tv_sp);
-//            textViewDic = (TextView) itemView.findViewById(R.id.tv_dic);
-//            textViewQty = (TextView) itemView.findViewById(R.id.tv_qty);
-//            textViewPerQty = (TextView) itemView.findViewById(R.id.tv_per_qty);
-//            itemqnty = (TextView) itemView.findViewById(R.id.itmqnty);
-//            itemAdd = (MaterialButton) itemView.findViewById(R.id.itmadd);
-//            itemDelete = (MaterialButton) itemView.findViewById(R.id.itmdec);
-//            addItem = (Button) itemView.findViewById(R.id.buttonAdd);
+            relativeLayout = (RelativeLayout) itemView.findViewById(R.id.selectedOne);
+            showStock = (TextView) itemView.findViewById(R.id.showStockAvailable);
+            proOutStock = (TextView) itemView.findViewById(R.id.proOutOfStock);
+            linearLayout = (LinearLayout) itemView.findViewById(R.id.showQtyWant);
+            textViewColor = (TextView) itemView.findViewById(R.id.textViewColor);
+            textViewSize = (TextView) itemView.findViewById(R.id.tv_ProSize);
+            textViewMRP = (TextView) itemView.findViewById(R.id.tv_mrp);
+            textViewSP = (TextView) itemView.findViewById(R.id.tv_sp);
+            textViewDic = (TextView) itemView.findViewById(R.id.tv_dic);
+            textViewQty = (TextView) itemView.findViewById(R.id.tv_qty);
+            textViewPerQty = (TextView) itemView.findViewById(R.id.tv_per_qty);
+            itemqnty = (TextView) itemView.findViewById(R.id.itmqnty);
+            itemAdd = (MaterialButton) itemView.findViewById(R.id.itmadd);
+            itemDelete = (MaterialButton) itemView.findViewById(R.id.itmdec);
+            addItem = (Button) itemView.findViewById(R.id.buttonAdd);
             itemView.setOnClickListener(this);
             addItem.setOnClickListener(this);
             itemAdd.setOnClickListener(this);
@@ -255,25 +234,14 @@ public class SelectPackSizeAdapter extends RecyclerView.Adapter<SelectPackSizeAd
         }
     }
 
-    /*public void setSelectedPosition(int position)
-    {
-        if (mSelectedItem >= 0) notifyItemChanged(mSelectedItem);
-        mSelectedItem = position;
-        notifyItemChanged(position);
-    }*/
-
     public interface RecyclerViewItemClickListener {
         void onMultiPackSelectItem(View view, ProductSKU data, int position);
     }
 
-    public Float getDiscountValue(ProductSKU skuinfo)
-    {
+    public Float getDiscountValue(ProductSKU skuinfo) {
         if (skuinfo.mMRP == null) return null;
         if (skuinfo.mMRP <= skuinfo.mPrice) return null;
-
-        //Float offAmnt = mMaxPrice-mSalePrice;
         Float discPerc = ((skuinfo.mMRP-skuinfo.mPrice)/skuinfo.mMRP) *100;
-
         return discPerc;
     }
 }

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:gravity="center"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="2dp"
+    android:layout_margin="5dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/selectedOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_toStartOf="@+id/wantMoreQty"
+            android:background="@drawable/pack_size_bg"
+            android:padding="5dp">
+
+            <LinearLayout
+                android:id="@+id/layout_ColSiz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp">
+
+                <TextView
+                    android:id="@+id/textViewColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"/>
+                <TextView
+                    android:id="@+id/tv_ProSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_ColSiz"
+                android:orientation="horizontal"
+                android:layout_marginTop="3dp">
+                <LinearLayout
+                    android:id="@+id/item_prices"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="2dp"
+                        android:layout_weight="1"
+                        android:gravity="start|center"
+                        android:textColor="@color/black_shade"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/tv_mrp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="2dp"
+                        android:layout_weight="1"
+                        android:gravity="start|center"
+                        android:textColor="@color/quantum_grey500"
+                        android:textSize="12sp" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_dic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/colorFontGreen"
+                    android:padding="5dp"
+                    android:textColor="@color/white"
+                    android:textSize="11sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_qty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_margin="2dp"
+                    android:textColor="@color/black_shade"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_per_qty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:textColor="@color/quantum_grey500"
+                    android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/showStockAvailable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+                    android:textStyle="bold"
+                    android:background="@drawable/stock_left_bg"/>
+            </LinearLayout>
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/proOutOfStock"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Out of Stock"
+            android:textColor="@color/red"
+            android:layout_below="@+id/selectedOne"
+            android:layout_centerHorizontal="true"/>
+        <RelativeLayout
+            android:id="@+id/wantMoreQty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp">
+
+            <LinearLayout
+                android:id="@+id/showQtyWant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/itmdec"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
+                    app:icon="@drawable/ic_baseline_remove_24"
+                    app:iconGravity="textStart"
+                    app:iconPadding="0dp" />
+
+                <TextView
+                    android:id="@+id/itmqnty"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="#000"
+                    android:textSize="16sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/itmadd"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
+                    app:icon="@drawable/ic_baseline_add_24"
+                    app:iconGravity="textStart"
+                    app:iconPadding="0dp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/buttonAdd"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:text="ADD"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

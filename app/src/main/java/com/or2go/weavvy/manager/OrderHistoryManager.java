@@ -102,6 +102,10 @@ public class OrderHistoryManager {
         return orderHistory;
     }
 
+    public int getOrderCount() {
+        return orderHistory.size();
+    }
+
     public boolean isOrderHistoryExists(String id) {
         int hissz = orderHistory.size();
         for(int i=0; i<hissz; i++) {

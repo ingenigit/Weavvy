@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".activity.UserProfileActivity">
+
+    <TextView
+        android:id="@+id/tvcustname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:padding="5dp"
+        android:text="Suman Shrestha"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/tvcustdetail"
+        android:layout_below="@+id/tvcustname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#888"
+        android:padding="5dp"
+        android:text="Suman Shrestha"
+        android:textSize="12sp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btEditProfile"
+        android:layout_below="@+id/tvcustdetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#0A0"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        app:backgroundTint="@color/colorLine"
+        android:text="Edit"/>
+
+    <TextView
+        android:id="@+id/tvcustaddr"
+        android:layout_below="@+id/btEditProfile"
+        android:text="Address Lists"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffCCCC"
+        android:padding="10dp"
+        android:gravity="center_vertical"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/address_listview"
+        android:layout_below="@+id/tvcustaddr"
+        android:layout_above="@+id/navigation_profile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:scrollbars="vertical"
+        android:layout_margin="5dp" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigation_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:backgroundTint="@color/white"
+        android:background="?android:attr/windowBackground"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/profile_navi" />
+
+</RelativeLayout>

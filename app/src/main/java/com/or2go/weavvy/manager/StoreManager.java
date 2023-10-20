@@ -13,9 +13,13 @@ import android.os.Message;
 import android.util.Log;
 
 import com.or2go.core.Or2GoStore;
+import com.or2go.core.SearchInfo;
+import com.or2go.mylibrary.SearchDBHelper;
 import com.or2go.mylibrary.StoreDBHelper;
 import com.or2go.weavvy.AppEnv;
 import com.or2go.weavvy.ProductDBSyncThread;
+import com.or2go.weavvy.db.StoreListDBHelper;
+import com.or2go.weavvy.model.SearchStore;
 import com.or2go.weavvy.model.StoreList;
 import com.or2go.weavvy.VendorProductSyncThread;
 import com.or2go.weavvy.server.StoreInfoCallback;
@@ -45,10 +49,13 @@ public class StoreManager {
     Handler mProductSyncHandler;
     private ProductDBSyncThread mProductDBSyncThread;
     Handler mProductDBSyncHandler;
+    StoreListDBHelper storedb;
 
     public StoreManager(Context context) {
         this.mContext = context;
         gAppEnv = (AppEnv) context;
+        storedb = new StoreListDBHelper(context);
+        storedb.InitDB();
         gAppEnv.getGposLogger().i("VendorManager : Initializing vendor DB");
         mStoreDB = new StoreDBHelper(mContext);
         mStoreDB.initStoreDB();
@@ -115,7 +122,12 @@ public class StoreManager {
     }
 
     public ArrayList<StoreList> getAllStoreList() {
-        return storelist;
+//        return storelist;
+        return storedb.getStoresList();
+    }
+
+    public boolean addStoreData(String storeid, String storename, String storetype, String storecontact, String storegeo) {
+        return storedb.insertStoreData(storeid, storename, storetype, storecontact, storegeo);
     }
 
     public synchronized boolean addStoreInfo(StoreList store){
@@ -328,7 +340,10 @@ public class StoreManager {
             mProductSyncHandler.sendMessage(msg);
         else
             gAppEnv.getGposLogger().i("ProductSyncThread : Product sync handler is null ");
+    }
 
+    public boolean getSearchInfo(String name,  ArrayList<StoreList>list ) {
+        return storedb.searchStore(name, list);
     }
 
 }
