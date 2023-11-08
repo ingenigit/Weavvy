@@ -66,6 +66,10 @@ public class NewAddressActivity extends AppCompatActivity {
     BottomSheetDialog bottomSheetDialog;
     private final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 35;
     boolean GPS;
+//    String sName;
+//    DeliveryAddrInfo editAddrInfo;
+//    String oldAddress;
+//    String addressName, house_no, land_mark;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,10 +84,13 @@ public class NewAddressActivity extends AppCompatActivity {
         mToolbar = (Toolbar)  findViewById(R.id.newadddr_toolbar);
 
         mToolbar.setTitle("New Delivery Address");
-
+//        sName = getIntent().getStringExtra("addrname");
+//        editAddrInfo = gAppEnv.getDeliveryManager().getAddrInfo(sName);
         sCaller = getIntent().getStringExtra("caller");
         selectedLocationAddress = getIntent().getStringExtra("myaddress");
         storeIDName = getIntent().getStringExtra("IDName");
+//        house_no = getIntent().getStringExtra("house_no");
+//        land_mark = getIntent().getStringExtra("land_mark");
         selectedAddress = getIntent().getStringExtra("address");
         selectedLocationLocality = getIntent().getStringExtra("mylocality");
         selectedLocationCity = getIntent().getStringExtra("mycity");
@@ -386,6 +393,24 @@ public class NewAddressActivity extends AppCompatActivity {
             edOtherPlace.setText("");
             edZipCode.setText("");
         }
+//        else if (selectedLocationAddress == null){
+//            edName.setText(editAddrInfo.getAddrName());
+//            edOtherPlace.setText(editAddrInfo.getPlace());
+//            geolocation.setText(editAddrInfo.geoposition);
+//            oldAddress = editAddrInfo.getAddress();
+//            String[] Addressparts = oldAddress.split(", ");
+//            String subAddress = oldAddress
+//                    .replace(Addressparts[0] + ", ", "")
+//                    .replace(", " + editAddrInfo.getLocality(), "")
+//                    .replace(", " + editAddrInfo.getZipCode(), "")
+//                    .replace(", " + editAddrInfo.getPlace(), "")
+//                    .replace(", India", "");
+//            edAddr.setText(subAddress);
+//            edhouseno.setText(Addressparts[0]);
+//            edlandmark.setText(editAddrInfo.getLandmark());
+//            edLocality.setText(editAddrInfo.getLocality());
+//            edZipCode.setText(editAddrInfo.getZipCode());
+//        }
         else {
 //            linearLayoutLocality.setVisibility(View.VISIBLE);
 //            linearLayoutPlace.setVisibility(View.VISIBLE);

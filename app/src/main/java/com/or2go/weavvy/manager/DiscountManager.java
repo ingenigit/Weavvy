@@ -74,7 +74,7 @@ public class  DiscountManager {
         for(int i=0; i< mDiscountInfoList.size() ; i++) {
             DiscountInfo discinfo = mDiscountInfoList.get(i);
             if (discinfo.isValid()) {
-                if (discinfo.VendOnly == 1) {
+                if (discinfo.VendOnly != null && discinfo.VendOnly == 1) {
                    if (discinfo.DiscVendId.equals(vendid)) {
                        listCoupons.add(discinfo);
                    }
@@ -94,7 +94,7 @@ public class  DiscountManager {
                         listCoupons.add(discinfo);
                     }
                 }
-                else if(discinfo.FTUOnly == 1) {
+                else if(discinfo.FTUOnly != null && discinfo.FTUOnly == 1) {
                     if (gAppEnv.gAppSettings.getBoolProperty("Pref_FTU"))
                         listCoupons.add(discinfo);
                 }

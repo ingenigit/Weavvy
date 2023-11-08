@@ -65,7 +65,6 @@
         </LinearLayout>
     </RelativeLayout>
 
-
     <RelativeLayout
         android:id="@+id/relativelayout_search"
         android:layout_below="@+id/relativelayout_holder"
@@ -102,8 +101,34 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/relativelayout_slider"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        android:layout_below="@+id/relativelayout_search">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/sliderImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"/>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/sliderImagetablayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:elevation="0dp"
+            android:layout_alignParentBottom="true"
+            app:tabBackground="@drawable/tab_selector"
+            app:tabGravity="center"
+            app:tabIndicatorHeight="0dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/relativelayout_storelist"
-        android:layout_below="@+id/relativelayout_search"
+        android:layout_below="@+id/relativelayout_slider"
         android:layout_above="@+id/appmain_navi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

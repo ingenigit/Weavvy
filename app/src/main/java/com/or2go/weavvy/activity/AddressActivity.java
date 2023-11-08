@@ -66,7 +66,7 @@ public class AddressActivity extends AppCompatActivity {
         textViewM.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(AddressActivity.this, EditAddressActivity.class));
             }
         });
         textViewC.setOnClickListener(new View.OnClickListener() {

@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.Manifest;
 import android.app.Dialog;
@@ -34,11 +35,16 @@ import com.ethanhua.skeleton.SkeletonScreen;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
+import com.or2go.adapter.MainPagerAdapter;
 import com.or2go.core.SearchInfo;
 import com.or2go.weavvy.AppEnv;
+import com.or2go.weavvy.BuildConfig;
 import com.or2go.weavvy.CustomDailogView;
 import com.or2go.weavvy.OrderListDividerDecoration;
 import com.or2go.weavvy.R;
+import com.or2go.weavvy.adapter.ImageSliderAdapter;
 import com.or2go.weavvy.model.SearchStore;
 import com.or2go.weavvy.model.StoreList;
 import com.or2go.weavvy.adapter.StoreListAdapter;
@@ -51,6 +57,11 @@ public class MainActivity extends AppCompatActivity {
 
     Context context;
     AppEnv gAppEnv;
+    ViewPager2 viewPager2ImageSlider;
+    TabLayout tabLayoutImageSlider;
+    ImageSliderAdapter imageSliderAdapter;
+    Runnable runnable = null;
+    Handler mHandler = new Handler();
     TextView textViewAddress, textViewCity, textViewUser;
     RelativeLayout relativeLayoutAddress;
     LinearLayout linearLayoutUser;
@@ -83,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(context,"Reinitializing application....", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(MainActivity.this, SplashScreen.class));
         }
+        viewPager2ImageSlider = (ViewPager2) findViewById(R.id.sliderImage);
+        tabLayoutImageSlider = (TabLayout) findViewById(R.id.sliderImagetablayout);
         relativeLayoutAddress = (RelativeLayout) findViewById(R.id.relativelayout_address);
         textViewCity = (TextView) findViewById(R.id.tv_selectedAddressCity);
         textViewAddress = (TextView) findViewById(R.id.tv_selectedAddress);
@@ -99,6 +112,19 @@ public class MainActivity extends AppCompatActivity {
         storeList = gAppEnv.gStoreMgr.getAllStoreList();
         for (int i = 0; i < storeList.size(); i++)
             System.out.println("StoreName: " + storeList.get(i).getStringName());
+
+        imageSliderAdapter = new ImageSliderAdapter(context, "headerslider", "https://or2go.in/", BuildConfig.OR2GO_VENDORID, R.layout.image_slider_image);
+        viewPager2ImageSlider.setAdapter(imageSliderAdapter);
+        if (viewPager2ImageSlider != null) {
+            viewPager2ImageSlider.setClipToPadding(false);
+            viewPager2ImageSlider.setCurrentItem(0);
+        }
+        new TabLayoutMediator(tabLayoutImageSlider, viewPager2ImageSlider, new TabLayoutMediator.TabConfigurationStrategy() {
+            @Override public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                //tab.setText("Tab " + (position + 1));
+            }
+        }).attach();
+        startAutoSlider(5);
 
         storeListAdapter = new StoreListAdapter(context, storeList);
         recyclerView.setAdapter(storeListAdapter);
@@ -171,6 +197,16 @@ public class MainActivity extends AppCompatActivity {
 
         if (storeList.size() > 0)
             skeletonScreen.hide();
+
+        relativeLayoutAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!gAppEnv.isRegistered())
+                    RegisterDialog();
+                else
+                    startActivity(new Intent(MainActivity.this, NewAddressActivity.class));
+            }
+        });
         linearLayoutUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -180,6 +216,21 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(MainActivity.this, UserProfileActivity.class));
             }
         });
+    }
+
+    private void startAutoSlider(int i) {
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                int pos = viewPager2ImageSlider.getCurrentItem();
+                pos = pos + 1;
+                if (pos >= i) pos = 0;
+                viewPager2ImageSlider.setCurrentItem(pos);
+                imageSliderAdapter.notifyItemChanged(pos);
+                mHandler.postDelayed(runnable, 5000);
+            }
+        };
+        mHandler.postDelayed(runnable, 5000);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
