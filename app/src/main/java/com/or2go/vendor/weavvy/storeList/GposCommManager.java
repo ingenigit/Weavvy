@@ -53,19 +53,10 @@ public class GposCommManager extends Thread {
                         apicb = b.getParcelable("callback");
                         or2goAppInfoPub(apicb);
                         break;
-                    case OR2GO_VENDOR_INFO:
-                        b = msg.getData();
-                        String vid = b.getString("vendorid");
-                        apicb = b.getParcelable("callback");
-                        //getVendorInfo(vid,  apicb);
-                        getStoreInfo(vid,  apicb);
-                        break;
-                    case OR2GO_COMM_VENDOR_STORE_LIST:
-                        System.out.println("CommManager Or2Go Multi Stores ...");
+                    case 358:
                         b = msg.getData();
                         apicb = b.getParcelable("callback");
-                        String vendorId = b.getString("vendorid");
-                        or2goMultiLogin(vendorId, apicb);
+                        or2goAllStore(apicb);
                         break;
                 }
                 this.removeMessages(msg.what, msg);
@@ -74,11 +65,10 @@ public class GposCommManager extends Thread {
         Looper.loop();
     }
 
-    private void or2goMultiLogin(String vendorId, CommApiCallback apicb) {
-        final String URL = "http://139.144.15.150:3000/api/custstoredbvrsionlistpub/";
+    private void or2goAllStore(CommApiCallback apicb) {
+        final String URL = "https://or2go.in/api/allstorelistpub/";
         // POST params to be sent to the server
         HashMap<String, String> params = new HashMap<String, String>();
-        params.put("vendorid", vendorId);
         params.put("accesskey", "TKO135nrt246");
         apiCaller.PostArrayRequest(URL, params, apicb);
     }

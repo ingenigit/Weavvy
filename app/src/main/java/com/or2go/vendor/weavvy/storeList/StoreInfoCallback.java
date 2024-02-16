@@ -25,7 +25,7 @@ public class StoreInfoCallback extends CommApiCallback implements Parcelable {
     @Override
     public Void call() {
         gAppEnv.getCommMgr().releaseApiSyncSem();
-        System.out.println(result + "kkmklmk " + response);
+        System.out.println(result + " storeInfoCallback  " + response);
         if (result > 0 )
         {
             JSONArray jsonarray = null;
@@ -45,23 +45,48 @@ public class StoreInfoCallback extends CommApiCallback implements Parcelable {
 
                     JSONObject vendordata = jsonarray.getJSONObject(1);
                     JSONObject dataobject = vendordata.getJSONObject("data");
-                    JSONArray storearr = dataobject.getJSONArray("storeinfo");
-                    System.out.println("StoreInfoCallBack:  StoreInfo=" +storearr.toString());
+                    JSONArray storeobject = dataobject.getJSONArray("storeinfo");
 
-                    for (int i = 0; i < storearr.length(); i++) {  // **line 2**
-                        JSONObject objstore = storearr.getJSONObject(i);
-
-                        String vid = objstore.getString("storeid");
+                    for (int i = 0; i < storeobject.length(); i++) {  // **line 2**
+                        JSONObject objstore = storeobject.getJSONObject(i);
+                        String vid = objstore.getString("vendorid");
+                        String sid = objstore.getString("storeid");
                         String vname = objstore.getString("storename");
+                        String vtype = objstore.getString("servicetype");
                         String vstoretype = objstore.getString("storetype");
+                        String vdesc = objstore.getString("description");
+                        String tag =   objstore.getString("featured_tags");
+                        Integer rate =   objstore.getInt("rating");
+                        String vplace = objstore.getString("city");
+                        String vlocality = objstore.getString("locality");
+                        String vstate = objstore.getString("state");
+                        String vpin = objstore.getString("pincode");
+                        Integer vstatus = objstore.getInt("salestatus");
+                        String vminord = objstore.getString("minordcost");
+                        String voptime = objstore.getString("working_time");
+                        String vclosed = objstore.getString("closedon");
+                        Integer vproddbver = objstore.getInt("productdbversion");
+                        Integer infover = objstore.getInt("infoversion");
+                        Integer skudbver = objstore.getInt("skudbversion");
+                        String shutfrom = objstore.getString("closedfrom");
+                        String shuttill = objstore.getString("closedtill");
+                        Integer payopt = objstore.getInt("payoption");
+                        Integer orderopt = objstore.getInt("manageorder");
+                        String vfav = objstore.getString("favfive");
                         String vgeo = objstore.getString("geolocation");
                         String vcont = objstore.getString("contact");
+                        Integer invctl = objstore.getInt("inventorycontrol");
 
                         if ((vcont == null) || (vcont.equals("null"))) vcont = "";
 
-                        StoreList nstore = new StoreList(vid, vname, vcont, vgeo, false);
+                        gAppEnv.getStoreManager().updateStoreInfo(vid, vname, vtype, vstoretype, vdesc,
+                                tag, vpin, vplace, vlocality, vstate, vpin, vstatus, vminord, voptime, vclosed, vfav,
+                                vproddbver, infover, skudbver, vgeo, "", payopt, orderopt, invctl);
+
+                        StoreList nstore = new StoreList(vid, vname, vtype, vcont, vgeo, false);
                         gAppEnv.getStoreManager().addStoreInfo(nstore);
                     }
+                    gAppEnv.getCompleteStoreList();
                 }
                 else
                 {

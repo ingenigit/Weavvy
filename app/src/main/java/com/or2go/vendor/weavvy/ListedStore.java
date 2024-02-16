@@ -39,7 +39,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ListedStore extends AppCompatActivity {
+public class ListedStore extends AppCompatActivity{
     Context mContext;
     AppEnv gAppEnv;
     ArrayList<StoreList> storeList;
@@ -48,6 +48,7 @@ public class ListedStore extends AppCompatActivity {
     SupportMapFragment mapFragment;
     FusedLocationProviderClient fusedLocationProviderClient;
     ArrayList<MarkerData> locationArrayList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,9 +138,17 @@ public class ListedStore extends AppCompatActivity {
                         String[] splited1 = firstDistance.split("\\s+");
                         String distanceValue = (String.valueOf(Double.parseDouble(splited1[0])));
                         String[] arrOfStr = storeloc.split(",");
-                        locationArrayList.add(new MarkerData(Double.parseDouble(arrOfStr[0]), Double.parseDouble(arrOfStr[1]), storeList.getStringName(), distanceValue));
+                        locationArrayList.add(new MarkerData(Double.parseDouble(arrOfStr[0]), Double.parseDouble(arrOfStr[1]), storeList.getStringName(), storeList.getStringType(), distanceValue));
                         CustomerMarker(latLng.latitude, latLng.longitude);
                         AnotherMethod(locationArrayList);
+
+                        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                            @Override
+                            public boolean onMarkerClick(@NonNull Marker marker) {
+                                Toast.makeText(mContext, "clicked: " + marker.getSnippet(), Toast.LENGTH_SHORT).show();
+                                return false;
+                            }
+                        });
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -155,12 +164,14 @@ public class ListedStore extends AppCompatActivity {
 
     private Marker AnotherMethod(ArrayList<MarkerData> locationArrayList) {
         for (int j = 0; j < locationArrayList.size(); j++){
-            return mMap.addMarker(new MarkerOptions()
+            Marker marker = mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(locationArrayList.get(j).latitude, locationArrayList.get(j).longitude))
 //                .anchor(0.5f, 0.5f)
                     .title(locationArrayList.get(j).title) //name of the delivery boy
-                    .snippet(locationArrayList.get(j).snippet + " KM") //actual distance between vendor and devlivery boy. update according to dv travel.
+                    .snippet(locationArrayList.get(j).type) //actual distance between vendor and devlivery boy. update according to dv travel.
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+            marker.showInfoWindow();
+            return marker;
         }
         return null;
     }
@@ -170,7 +181,7 @@ public class ListedStore extends AppCompatActivity {
                 .position(new LatLng(latitude, longitude))
 //                .anchor(0.5f, 0.5f)
                 .title("Your Location") //name of the delivery boy
-                .snippet("0 km") //actual distance between vendor and devlivery boy. update according to dv travel.
+//                .snippet("0 km") //actual distance between vendor and devlivery boy. update according to dv travel.
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
     }
 
@@ -187,5 +198,4 @@ public class ListedStore extends AppCompatActivity {
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
-
 }

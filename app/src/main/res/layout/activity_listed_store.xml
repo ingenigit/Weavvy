@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,7 +10,42 @@
     <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/linearlayout_detail"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:id="@+id/mapes"/>
+
+    <LinearLayout
+        android:id="@+id/linearlayout_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:id="@+id/tv_storeName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="2dp"
+            android:text="Store Name"/>
+
+        <TextView
+            android:id="@+id/tv_storeType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            android:layout_marginBottom="3dp"
+            android:text="Store Type"/>
+        <TextView
+            android:id="@+id/tv_storeAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            android:layout_marginBottom="3dp"
+            android:text="Store Address"/>
+    </LinearLayout>
 
 </RelativeLayout>

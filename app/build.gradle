@@ -14,6 +14,10 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "int", 'UI_VERSION', '2'
+        buildConfigField "String", "OR2GO_SERVER", "\"http://139.144.15.150:3000/\""
+        buildConfigField "String", "APP_NAME", "\"Weavvy\""
     }
 
     buildTypes {
@@ -40,7 +44,9 @@ dependencies {
     implementation 'com.github.ingenigit:or2goCore:1.2.32'
     implementation 'com.github.ingenigit:VolleyLibrary:1.0.1'
     implementation 'com.android.volley:volley:1.2.1'
+    implementation 'com.github.bumptech.glide:glide:4.13.1'
     implementation 'com.rabbitmq:amqp-client:4.12.0'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'com.google.android.libraries.places:places:3.2.0'
     implementation 'com.google.maps.android:android-maps-utils:2.4.0'
     implementation 'com.google.android.gms:play-services-maps:18.1.0'

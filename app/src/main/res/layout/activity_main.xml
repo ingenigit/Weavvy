@@ -18,7 +18,8 @@
             android:layout_height="wrap_content"
             app:tabGravity="center"
             app:tabMode="fixed"
-            app:tabIndicatorColor="@color/white"
+            app:tabRippleColor="@color/quantum_lightgreen500"
+            app:tabIndicatorColor="@color/black"
             app:tabSelectedTextColor="@color/black"/>
     </com.google.android.material.appbar.AppBarLayout>
     <androidx.viewpager.widget.ViewPager
